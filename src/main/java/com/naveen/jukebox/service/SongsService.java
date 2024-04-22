@@ -4,6 +4,7 @@ import com.naveen.jukebox.entity.SongsEntity;
 import com.naveen.jukebox.model.SongsRequest;
 import com.naveen.jukebox.model.SongsResponse;
 import com.naveen.jukebox.repository.SongsRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ import java.util.List;
 public class SongsService implements ISongsService {
     @Autowired
     private SongsRepository repository;
+    @Autowired
+    private ModelMapper mapper;
 
     @Override
     public SongsResponse addSong(SongsRequest request) {
@@ -38,21 +41,10 @@ public class SongsService implements ISongsService {
 
 
     private SongsEntity mapRequestToEntity(SongsRequest request) {
-        SongsEntity entity = new SongsEntity();
-        entity.setOwner(request.getOwner());
-        entity.setTitle(request.getTitle());
-        entity.setCollaborators(request.getCollaborators());
-
-        return entity;
+        return this.mapper.map(request, SongsEntity.class );
     }
 
     private SongsResponse mapEntityToResponse(SongsEntity entity) {
-        SongsResponse response = new SongsResponse();
-        response.setTitle(entity.getTitle());
-        response.setCollaborators(entity.getCollaborators());
-        response.setId(entity.getId());
-        response.setOwner(entity.getOwner());
-
-        return response;
+        return this.mapper.map(entity, SongsResponse.class );
     }
 }
