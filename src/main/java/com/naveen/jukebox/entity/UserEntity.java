@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "USERS", uniqueConstraints = {@UniqueConstraint(columnNames = "username")})
@@ -32,5 +33,7 @@ public class UserEntity {
     @Size(min=3, max=20, message="Name must be between 3 and 20 characters")
     @Column(name = "NAME")
     private String name;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PlaylistsEntity> playlists;
 
 }

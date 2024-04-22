@@ -17,8 +17,15 @@ public class PlaylistsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private List<String> songs;
-    @ManyToOne()
+    @ManyToMany
+    @JoinTable(
+            name = "PLAYLIST_SONGS",
+            joinColumns = @JoinColumn(name = "playlist_id"),
+            inverseJoinColumns = @JoinColumn(name = "song_id")
+    )
+    private List<SongsEntity> songs;
+    @ManyToOne
+    @JoinColumn(name = "userId", nullable = false)
     private long userId;
 
 }
