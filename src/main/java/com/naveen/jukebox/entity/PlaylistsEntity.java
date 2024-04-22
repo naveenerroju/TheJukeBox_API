@@ -26,6 +26,6 @@ public class PlaylistsEntity {
     private List<SongsEntity> songs;
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
-    private long userId;
+    private UserEntity user;
 
 }

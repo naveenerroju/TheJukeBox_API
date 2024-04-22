@@ -2,6 +2,7 @@ package com.naveen.jukebox.service;
 
 import com.naveen.jukebox.entity.UserEntity;
 import com.naveen.jukebox.exceptions.BadCredentialsException;
+import com.naveen.jukebox.exceptions.IncorrectInputsException;
 import com.naveen.jukebox.model.Credentials;
 import com.naveen.jukebox.model.UserRequest;
 import com.naveen.jukebox.model.UserResponse;
@@ -22,9 +23,20 @@ public class UserService implements IUserService{
 
     @Override
     public UserResponse createUser(UserRequest request) {
+
+        checkIfUserExists(request);
+
         UserEntity entity = this.modelMapper.map(request, UserEntity.class);
         UserEntity responseEntity = userRepository.save(entity);
+
         return this.modelMapper.map(responseEntity, UserResponse.class);
+    }
+
+    private void checkIfUserExists(UserRequest request){
+        Optional<UserEntity> entity = userRepository.findByUsername(request.getUsername());
+        if(entity.isPresent()) {
+            throw new IncorrectInputsException("This user already exists");
+        }
     }
 
     @Override
