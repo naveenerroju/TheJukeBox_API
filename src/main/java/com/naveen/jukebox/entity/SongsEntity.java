@@ -27,4 +27,6 @@ public class SongsEntity {
     private String owner;
     @Column(name = "COLLABORATORS")
     private List<String> collaborators;
+    @ManyToMany(mappedBy = "songs")
+    private List<PlaylistsEntity> playlists;
 }
