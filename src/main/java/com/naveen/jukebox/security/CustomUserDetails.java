@@ -1,14 +1,14 @@
 package com.naveen.jukebox.security;
 
-import com.naveen.jukebox.entity.UserEntity;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+//import com.naveen.jukebox.entity.UserEntity;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
+//
+//import java.util.Collection;
+//import java.util.List;
 
-import java.util.Collection;
-import java.util.List;
-
-public class CustomUserDetails implements UserDetails {
+public class CustomUserDetails { /* implements UserDetails {
 
     private final UserEntity user;
 
@@ -51,5 +51,5 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return false;
-    }
+    }*/
 }

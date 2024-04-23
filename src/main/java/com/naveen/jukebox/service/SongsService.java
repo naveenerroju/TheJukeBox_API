@@ -1,6 +1,7 @@
 package com.naveen.jukebox.service;
 
 import com.naveen.jukebox.entity.SongsEntity;
+import com.naveen.jukebox.exceptions.IncorrectInputsException;
 import com.naveen.jukebox.model.SongsRequest;
 import com.naveen.jukebox.model.SongsResponse;
 import com.naveen.jukebox.repository.SongsRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SongsService implements ISongsService {
@@ -23,6 +25,15 @@ public class SongsService implements ISongsService {
         SongsEntity entity = mapRequestToEntity(request);
         SongsEntity response = repository.save(entity);
         return mapEntityToResponse(response);
+    }
+
+    protected SongsEntity getSongById(long songId){
+        Optional<SongsEntity> song = repository.findById(songId);
+        if(song.isPresent()){
+            return song.get();
+        } else {
+            throw new IncorrectInputsException("Song id " + songId + " not found");
+        }
     }
 
     @Override

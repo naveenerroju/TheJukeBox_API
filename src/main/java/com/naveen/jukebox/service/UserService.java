@@ -41,6 +41,15 @@ public class UserService implements IUserService{
         return this.modelMapper.map(responseEntity, UserResponse.class);
     }
 
+    protected UserEntity getUserWithUsername(String userName) {
+        Optional<UserEntity> user = userRepository.findByUsername(userName);
+        if(user.isEmpty()){
+            throw new IncorrectInputsException("User with username " + userName +" not found");
+        } else {
+            return user.get();
+        }
+    }
+
     @Override
     public boolean validateUser(Credentials credentials) {
         Optional<UserEntity> entity = userRepository.findByUsername(credentials.getUsername());
