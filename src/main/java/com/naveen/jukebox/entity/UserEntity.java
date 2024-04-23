@@ -1,6 +1,7 @@
 package com.naveen.jukebox.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.naveen.jukebox.model.UserRole;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,8 @@ public class UserEntity {
     @Size(min=4, max=10, message="Password must be between 4 and 10 characters")
     @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "USER_ROLE")
+    private UserRole role;
     @NotNull
     @Size(min=3, max=20, message="Name must be between 3 and 20 characters")
     @Column(name = "NAME")
