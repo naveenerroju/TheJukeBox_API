@@ -20,7 +20,7 @@ public class RegisterUserController {
     private UserService userService;
 
     @PostMapping(path = "/user")
-    public ResponseEntity<UserResponse> registerUser(@RequestBody @Valid UserRequest request) {
+    public ResponseEntity<UserResponse> registerUser(@Valid @RequestBody UserRequest request) {
         UserResponse response = userService.createUser(request);
         return new ResponseEntity<>(response, HttpStatusCode.valueOf(201));
     }
