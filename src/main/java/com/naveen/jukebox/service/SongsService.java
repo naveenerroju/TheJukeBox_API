@@ -39,12 +39,20 @@ public class SongsService implements ISongsService {
         return responses;
     }
 
+    public List<SongsResponse> addMultipleSongs(List<SongsRequest> requests) {
+        List<SongsResponse> responses = new ArrayList<>();
+        for (SongsRequest request : requests) {
+            responses.add(addSong(request));
+        }
+        return responses;
+    }
+
 
     private SongsEntity mapRequestToEntity(SongsRequest request) {
-        return this.mapper.map(request, SongsEntity.class );
+        return this.mapper.map(request, SongsEntity.class);
     }
 
     private SongsResponse mapEntityToResponse(SongsEntity entity) {
-        return this.mapper.map(entity, SongsResponse.class );
+        return this.mapper.map(entity, SongsResponse.class);
     }
 }

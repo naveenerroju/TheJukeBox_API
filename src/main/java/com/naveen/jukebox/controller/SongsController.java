@@ -23,8 +23,14 @@ public class SongsController {
         return new ResponseEntity<>(response, HttpStatusCode.valueOf(201));
     }
 
+    @PostMapping(path = "/add-all")
+    public ResponseEntity<List<SongsResponse>> addMultipleSongs(@RequestBody List<SongsRequest> request) {
+        List<SongsResponse> response = songsService.addMultipleSongs(request);
+        return new ResponseEntity<>(response, HttpStatusCode.valueOf(201));
+    }
+
     @GetMapping(path = "/getall")
-    public ResponseEntity<List<SongsResponse>> getAllSongs(){
+    public ResponseEntity<List<SongsResponse>> getAllSongs() {
         List<SongsResponse> responses = songsService.getSongs();
         return new ResponseEntity<>(responses, HttpStatusCode.valueOf(200));
     }
