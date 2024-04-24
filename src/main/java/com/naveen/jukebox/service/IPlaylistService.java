@@ -10,4 +10,5 @@ public interface IPlaylistService {
     void addSongToPlaylist(long playlistId, long songId);
     PlaylistResponse getPlaylist(long playlistId);
     List<PlaylistResponse> getPlaylistsOfUser(String username);
+    void deletePlaylist(long playlistId);
 }

@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
  *      Users table should have all the playlists references
  *      Playlists table should have all the songs references
  *      Songs table should have all the playlists references
+ *      Magic Strings and numbers
  */
 @SpringBootApplication
 public class JukeboxApplication {

@@ -27,6 +27,11 @@ public class SongsService implements ISongsService {
         return mapEntityToResponse(response);
     }
 
+    @Override
+    public void deleteSong(long songId) {
+        repository.deleteById(songId);
+    }
+
     protected SongsEntity getSongById(long songId){
         Optional<SongsEntity> song = repository.findById(songId);
         if(song.isPresent()){

@@ -36,9 +36,15 @@ public class PlaylistsController {
     }
 
     @GetMapping(path = "/get/search")
-    public ResponseEntity<List<PlaylistResponse>> getPlayListOfUser(@RequestParam(required = true) String username){
+    public ResponseEntity<List<PlaylistResponse>> getPlayListOfUser(@RequestParam() String username){
         List<PlaylistResponse> response = service.getPlaylistsOfUser(username);
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/delete/{playlistId}")
+    public ResponseEntity<String> deletePlaylist(@PathVariable(name = "playlistId") long playlistId){
+        service.deletePlaylist(playlistId);
+        return new ResponseEntity<>("Deleted successfully", HttpStatus.NO_CONTENT);
     }
 
 }

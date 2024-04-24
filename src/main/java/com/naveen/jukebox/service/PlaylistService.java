@@ -69,4 +69,12 @@ public class PlaylistService implements IPlaylistService{
         }
         return response;
     }
+
+    @Override
+    public void deletePlaylist(long playlistId) {
+        if(repository.findById(playlistId).isEmpty()){
+            throw new IncorrectInputsException("Playlist with id "+playlistId+" doesn't exist");
+        }
+        repository.deleteById(playlistId);
+    }
 }
