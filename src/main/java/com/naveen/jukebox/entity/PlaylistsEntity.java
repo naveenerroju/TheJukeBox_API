@@ -1,5 +1,6 @@
 package com.naveen.jukebox.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class PlaylistsEntity {
     private List<SongsEntity> songs;
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
+    @JsonIgnore
     private UserEntity user;
 
 }

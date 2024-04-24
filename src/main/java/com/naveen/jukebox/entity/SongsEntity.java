@@ -1,5 +1,6 @@
 package com.naveen.jukebox.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,5 +29,6 @@ public class SongsEntity {
     @Column(name = "COLLABORATORS")
     private List<String> collaborators;
     @ManyToMany(mappedBy = "songs")
+    @JsonIgnore
     private List<PlaylistsEntity> playlists;
 }
