@@ -1,21 +1,50 @@
 package com.naveen.jukebox.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.naveen.jukebox.model.PlayListRequest;
+import com.naveen.jukebox.model.PlaylistResponse;
+import com.naveen.jukebox.service.PlaylistService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/playlists")
 public class PlaylistsController {
 
-    @PostMapping(path = "/create")
-    public void createPlaylist(String playlist){
+    @Autowired
+    private PlaylistService service;
 
+    @PostMapping(path = "/create/{username}")
+    public ResponseEntity<String> createPlaylist(@PathVariable("username") String username, @RequestBody PlayListRequest playlist){
+        service.createPlaylist(username, playlist);
+        return new ResponseEntity<>("Successfully created", HttpStatus.CREATED);
     }
 
-    @PostMapping(path = "/add-song/playlist-id")
-    public void addSongToPlaylist(@RequestParam(name = "playlist-id") long playlistId, long songId){
-
+    @PutMapping(path = "/add-song/{playlistId}/{songId}")
+    public ResponseEntity<String> addSongToPlaylist(@PathVariable(name = "playlistId") long playlistId, @PathVariable(name = "songId") long songId){
+        service.addSongToPlaylist(playlistId, songId);
+        return new ResponseEntity<>("Successfully added", HttpStatus.ACCEPTED);
     }
+
+    @GetMapping(path = "/get/{playlistId}")
+    public ResponseEntity<PlaylistResponse> getPlayList(@PathVariable(name = "playlistId") long playlistId){
+        PlaylistResponse response = service.getPlaylist(playlistId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/get/search")
+    public ResponseEntity<List<PlaylistResponse>> getPlayListOfUser(@RequestParam() String username){
+        List<PlaylistResponse> response = service.getPlaylistsOfUser(username);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/delete/{playlistId}")
+    public ResponseEntity<String> deletePlaylist(@PathVariable(name = "playlistId") long playlistId){
+        service.deletePlaylist(playlistId);
+        return new ResponseEntity<>("Deleted successfully", HttpStatus.NO_CONTENT);
+    }
+
 }

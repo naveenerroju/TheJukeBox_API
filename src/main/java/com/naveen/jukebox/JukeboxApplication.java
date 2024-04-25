@@ -5,6 +5,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * TODO:
+ *      Add constructor parameters
+ *      Make the requests return a valid response
+ *      Document all the methods
+ *      Users table should have all the playlists references
+ *      Playlists table should have all the songs references
+ *      Songs table should have all the playlists references
+ *      Magic Strings and numbers
+ */
 @SpringBootApplication
 public class JukeboxApplication {
 

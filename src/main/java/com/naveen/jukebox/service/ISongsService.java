@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ISongsService {
     SongsResponse addSong(SongsRequest request);
-
+    void deleteSong(long songId);
     List<SongsResponse> getSongs();
 }

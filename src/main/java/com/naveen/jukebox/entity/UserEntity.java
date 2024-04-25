@@ -1,5 +1,6 @@
 package com.naveen.jukebox.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.naveen.jukebox.model.UserRole;
 import jakarta.persistence.*;
@@ -38,6 +39,7 @@ public class UserEntity {
     @Column(name = "NAME")
     private String name;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<PlaylistsEntity> playlists;
 
 }

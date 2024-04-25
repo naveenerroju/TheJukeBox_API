@@ -4,6 +4,7 @@ import com.naveen.jukebox.model.SongsRequest;
 import com.naveen.jukebox.model.SongsResponse;
 import com.naveen.jukebox.service.SongsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,12 @@ public class SongsController {
     public ResponseEntity<List<SongsResponse>> getAllSongs() {
         List<SongsResponse> responses = songsService.getSongs();
         return new ResponseEntity<>(responses, HttpStatusCode.valueOf(200));
+    }
+
+    @DeleteMapping(path = "/delete/{songId}")
+    public ResponseEntity<String> deleteSong(@PathVariable(name = "songId") long songId) {
+        songsService.deleteSong(songId);
+        return new ResponseEntity<>("Deleted successfully", HttpStatus.NO_CONTENT);
     }
 
 }
