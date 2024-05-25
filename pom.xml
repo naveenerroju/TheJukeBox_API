@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.naveen</groupId>
     <artifactId>jukebox</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>jukebox</name>
     <description>Jukebox API</description>
     <properties>
