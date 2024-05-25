@@ -6,27 +6,37 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-
+/**
+ * The main class that starts the Jukebox application.
+ *
+ * This class uses Spring Boot to initialize the application context and start the embedded web server.
+ */
 @SpringBootApplication
 @EnableWebMvc
 public class JukeboxApplication {
 
+    /**
+     * The main method that starts the Spring Boot application.
+     *
+     * @param args Command line arguments passed to the application.
+     */
     public static void main(String[] args) {
         SpringApplication.run(JukeboxApplication.class, args);
     }
 
     /**
-     * Use this Bean to use the mapper.
-     * <br>
+     * Provides a ModelMapper bean that can be used to map between different model classes.
+     *
      * <p>
-     * Autowire the ModelMapper. Then use it to map the models.
-     * Example: <code>
-     *     <br>
-     *     UserEntity entity = this.modelMapper.map(request, UserEntity.class);
-     * </code>
+     * Example usage:
+     * <pre>
+     * {@code
+     * UserEntity entity = modelMapper.map(request, UserEntity.class);
+     * }
+     * </pre>
      * </p>
      *
-     * @return the ModelMapper object
+     * @return The ModelMapper object.
      */
     @Bean
     public ModelMapper getModelMapper() {
