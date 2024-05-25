@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -17,27 +18,34 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 @JsonIgnoreProperties
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotEmpty(message = "username must not be null or empty")
-    @Size(min=4, max=10, message="Username must be between 4 and 10 characters")
-    @Column(name = "USERNAME")
+
+    @NotEmpty(message = "Username must not be null or empty")
+    @Size(min = 4, max = 10, message = "Username must be between 4 and 10 characters")
+    @Column(name = "USERNAME", nullable = false)
     private String username;
-    @NotEmpty(message = "password must not be null or empty")
-    @Size(min=4, max=10, message="Password must be between 4 and 10 characters")
-    @Column(name = "PASSWORD")
+
+    @NotEmpty(message = "Password must not be null or empty")
+    @Size(min = 4, max = 10, message = "Password must be between 4 and 10 characters")
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
-    @NotEmpty(message = "user's role must not be null or empty")
-    @Column(name = "USER_ROLE")
+
+    @NotEmpty(message = "User's role must not be null or empty")
+    @Column(name = "USER_ROLE", nullable = false)
+    @Enumerated(EnumType.STRING)
     private UserRole role;
-    @NotEmpty(message = "name must not be null or empty")
-    @Size(min=3, max=20, message="Name must be between 3 and 20 characters")
-    @Column(name = "NAME")
+
+    @NotEmpty(message = "Name must not be null or empty")
+    @Size(min = 3, max = 20, message = "Name must be between 3 and 20 characters")
+    @Column(name = "NAME", nullable = false)
     private String name;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<PlaylistsEntity> playlists;

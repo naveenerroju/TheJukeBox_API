@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -17,7 +19,10 @@ public class PlaylistsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Playlist title cannot be blank")
     private String title;
+
     @ManyToMany
     @JoinTable(
             name = "PLAYLIST_SONGS",
@@ -25,9 +30,10 @@ public class PlaylistsEntity {
             inverseJoinColumns = @JoinColumn(name = "song_id")
     )
     private List<SongsEntity> songs;
-    @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @NotNull(message = "User must be specified")
     @JsonIgnore
     private UserEntity user;
-
 }
