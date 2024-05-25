@@ -88,11 +88,10 @@ public class PlaylistService implements IPlaylistService {
         // Retrieves the playlist entity by ID from the repository
         Optional<PlaylistsEntity> playlist = repository.findById(playlistId);
 
-        // Retrieves the song entity by ID using the songsService
-        SongsEntity song = songsService.getSongById(songId);
-
         // Checks if the playlist exists
-        if (playlist.isPresent()) {
+        if (playlist.isPresent() && !playlist.get().getSongs().isEmpty()) {
+            // Retrieves the song entity by ID using the songsService
+            SongsEntity song = songsService.getSongById(songId);
             // Adds the song to the playlist entity
             playlist.get().getSongs().add(song);
             // Saves the updated playlist entity back to the repository

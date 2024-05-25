@@ -60,12 +60,21 @@
             <version>3.2.0</version>
         </dependency>
 
-<!--        Swagger documentation related dependencies-->
+        <!--        Swagger documentation related dependencies-->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.5.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.pitest/pitest-parent -->
+        <!--        FOR MUTATION COVERAGE-->
+        <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-parent</artifactId>
+            <version>1.16.1</version>
+            <type>pom</type>
+        </dependency>
+
 
     </dependencies>
 
@@ -83,6 +92,20 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.16.1</version>
+                <configuration>
+                    <targetClasses>
+                        <param>com.baeldung.testing.mutation.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>com.baeldung.mutation.test.*</param>
+                    </targetTests>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
