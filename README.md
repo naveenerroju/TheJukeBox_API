@@ -96,6 +96,10 @@ Swagger is integrated into the Jukebox Application to provide API documentation.
 1. Start the application as mentioned above.
 2. Open a web browser and go to `http://localhost:8081/swagger-ui/index.html#/` to access the Swagger UI.
 
+## Testing
+1. This project includes a Postman collection. It is in test > resources. It is recommended to explore the postman collection.
+2. Unit testing is implemented to test the portions of the code individually.
+
 ## Notes
 
 - **Database**: The application uses an in-memory H2 database by default. You can configure it to use other databases like MySQL, PostgreSQL, etc., by modifying the `application.properties` file.

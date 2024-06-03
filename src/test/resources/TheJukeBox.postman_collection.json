@@ -1,0 +1,359 @@
+{
+	"info": {
+		"_postman_id": "53212fcd-09a2-4152-a574-5c9fc5c2aa03",
+		"name": "The Juke Box",
+		"description": "## 👋 Introduction\n\nStartFragmentThe Jukebox Application is a web-based music playlist management system. It allows users to create playlists, add songs to them, and manage their music collection. This project demonstrates a backend application built with Spring Boot and Spring Data JPA.EndFragment\n\n## 🚀 Getting started with The Jukebox\n\n##### **Songs collection**\n\nThe Songs Collection is a folder of Jukebox collection. This collection contains a sample post operation of songs and a get operation of songs.\n\n##### **Users collection**\n\nThere are two types of Users. User and Artist. The roles of user is currently not having any differerance. This is for future improvement. One request contains a post request for user and another is for Artist.\n\n_Note: If role is not specified, the API will consider it as user role by default._\n\n##### **Playlists Collection**\n\nJukebox is all about playlists. You can add, remove, update and get playlists.\n\n- You can create playlist of existing songs for an existing user.\n    \n- You can update playlist by adding more songs.\n    \n- You can get a playlist by the playlist ID\n    \n- You can get all playlists of a user.\n    \n- You can delete a playlsit by specifying the playlist Id.\n    \n\n## 📃API documentation\n\nSwagger is integrated into the Jukebox Application to provide API documentation. You can view and interact with the API endpoints using Swagger UI. Here are the steps to access it:\n\n1. Start the application as mentioned above.\n    \n2. Open a web browser and go to `http://localhost:8081/swagger-ui/index.html#/` to access the Swagger UI.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21585631"
+	},
+	"item": [
+		{
+			"name": "Songs",
+			"item": [
+				{
+					"name": "add song 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Thinking out loud\",\r\n    \"owner\": \"Ed Shareen\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/songs/add",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"songs",
+								"add"
+							]
+						},
+						"description": "Add a song to database"
+					},
+					"response": []
+				},
+				{
+					"name": "add song 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Bailando\",\r\n    \"owner\": \"Enrique Iglesias\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/songs/add",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"songs",
+								"add"
+							]
+						},
+						"description": "Add a song to database"
+					},
+					"response": []
+				},
+				{
+					"name": "add song 3",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Blank Space\",\r\n    \"owner\": \"Taylor Swift\",\r\n    \"collaborators\": [\r\n        \"Jayson\",\r\n        \"Peter\",\r\n        \"Henry\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/songs/add",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"songs",
+								"add"
+							]
+						},
+						"description": "Add a song to database"
+					},
+					"response": []
+				},
+				{
+					"name": "add multiple songs",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"SongsResponse\": [\r\n    {\r\n    \"title\" : \"Circles\",\r\n    \"owner\": \"Post Malone\"\r\n    },\r\n    {\r\n    \"title\" : \"Husn\",\r\n    \"owner\": \"Anuv Jain\",\r\n    \"collaborators\": [\r\n        \"Jayson\",\r\n        \"Peter\",\r\n        \"Henry\"\r\n    ]\r\n},\r\n{\r\n    \"title\" : \"Udd Gaye\",\r\n    \"owner\": \"Ritviz\",\r\n    \"collaborators\": [\r\n        \"ArtistX\",\r\n        \"ArtistY\",\r\n        \"ArtistZ\"\r\n    ]\r\n}\r\n]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/songs/add-all",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"songs",
+								"add-all"
+							]
+						},
+						"description": "Add multiple songs in database"
+					},
+					"response": []
+				},
+				{
+					"name": "get all songs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/songs/getall",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"songs",
+								"getall"
+							]
+						},
+						"description": "Get all the songs in the database"
+					},
+					"response": []
+				}
+			],
+			"description": "The Songs Collection is a folder of Jukebox collection. This collection contains a sample post operation of songs and a get operation of songs."
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"naveen\",\r\n    \"username\": \"naveen1\",\r\n    \"password\": \"naveen1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/register/user",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"register",
+								"user"
+							]
+						},
+						"description": "Register a user"
+					},
+					"response": []
+				},
+				{
+					"name": "register Artist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ed shareen\",\r\n    \"username\": \"edshareen\",\r\n    \"password\": \"edshareen\",\r\n    \"role\" : \"ARTIST\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/register/user",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"register",
+								"user"
+							]
+						},
+						"description": "Register an artist."
+					},
+					"response": []
+				}
+			],
+			"description": "There are two types of Users. User and Artist. The roles of user is currently not having any differerance. This is for future improvement. One request contains a post request for user and another is for Artist.\n\n_Note: If role is not specified, the API will consider it as user role by default._"
+		},
+		{
+			"name": "Playlists",
+			"item": [
+				{
+					"name": "create playlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"favorites\",\r\n    \"songs\" : [\r\n        1,\r\n        2\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/playlists/create/naveen1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"playlists",
+								"create",
+								"naveen1"
+							]
+						},
+						"description": "create playlist of existing songs for an existing user."
+					},
+					"response": []
+				},
+				{
+					"name": "add song to playlist",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/playlists/add-song/1/2",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"playlists",
+								"add-song",
+								"1",
+								"2"
+							]
+						},
+						"description": "update playlist by adding more songs."
+					},
+					"response": []
+				},
+				{
+					"name": "get playlist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/playlists/get/1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"playlists",
+								"get",
+								"1"
+							]
+						},
+						"description": "get a playlist by the playlist ID"
+					},
+					"response": []
+				},
+				{
+					"name": "get playlists of user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/playlists/get/search?username=naveen1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"playlists",
+								"get",
+								"search"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "naveen1"
+								}
+							]
+						},
+						"description": "get all playlists of a user."
+					},
+					"response": []
+				},
+				{
+					"name": "delete a playlist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/playlists/delete/1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"playlists",
+								"delete",
+								"1"
+							]
+						},
+						"description": "delete a playlsit by specifying the playlist Id."
+					},
+					"response": []
+				}
+			],
+			"description": "Jukebox is all about playlists. You can add, remove, update and get playlists.\n\n- You can create playlist of existing songs for an existing user.\n    \n- You can update playlist by adding more songs.\n    \n- You can get a playlist by the playlist ID\n    \n- You can get all playlists of a user.\n    \n- You can delete a playlsit by specifying the playlist Id."
+		}
+	],
+	"variable": [
+		{
+			"key": "UserName",
+			"value": ""
+		}
+	]
+}
