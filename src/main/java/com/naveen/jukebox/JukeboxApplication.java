@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * This class uses Spring Boot to initialize the application context and start the embedded web server.
  */
 @SpringBootApplication
-@EnableWebMvc
+@ComponentScan(basePackages = "com.naveen.jukebox")
 public class JukeboxApplication {
 
     /**
